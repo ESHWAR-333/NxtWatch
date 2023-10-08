@@ -15,6 +15,7 @@ import {
   TrendingVideosSubContainer,
   TrendingLogoContainer,
   TrendingHeading,
+  SideBarContainer,
   NoSavedVideosContainer,
   NoSavedVideoImg,
   NoSavedVideosTitle,
@@ -79,7 +80,10 @@ class SavedVideos extends Component {
             <HomeMainContainer>
               <Header />
               <MainBodyContainer>
-                <SideBar />
+                <SideBarContainer>
+                  <SideBar />
+                </SideBarContainer>
+
                 <DataDetailsContainer mode={activeMode}>
                   <TrendingVideosSubContainer mode={activeMode}>
                     <TrendingLogoContainer mode={activeMode}>

@@ -33,7 +33,7 @@ const TrendingVideoCard = props => {
   } = data
   const {name, profileImageUrl} = channel
   let date = formatDistanceToNow(new Date(publishedAt))
-  date = date.slice((5: 11))
+  date = date.slice((9: 11))
   return (
     <SavedContext.Consumer>
       {value => {
@@ -57,6 +57,7 @@ const TrendingVideoCard = props => {
                 </TrendingVideoCardChannelName>
               </TrendingVideoCardSubContainer>
             </TrendingVideoCardContainer>
+
             <SmallTrendingVideoCardContainer>
               <VideoCardContainer>
                 <VideoImage src={thumbnailUrl} alt="video thumbnail" />

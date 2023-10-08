@@ -22,6 +22,8 @@ import {
   HeaderButton,
   SmallHeaderButton,
   UserHeader,
+  CloseButton,
+  PopUpMainContainer,
   LogoutText,
   HeaderItem,
   PopUpContainer,
@@ -33,8 +35,6 @@ import {
   SideBarItemName,
 } from './styledComponents'
 
-const overlayStyle = {background: 'rgba(0,0,0,0.5)'}
-
 const Header = props => {
   const onClickLogout = () => {
     const {history} = props
@@ -44,7 +44,19 @@ const Header = props => {
   return (
     <SavedContext.Consumer>
       {value => {
-        const {activeMode, changeActiveMode} = value
+        const {
+          activeMode,
+          changeActiveMode,
+          currentRoute,
+          changeCurrentRoute,
+        } = value
+
+        const overlayStyle = {
+          background: activeMode === 'Dark' ? '#231f20' : '#f9f9f9',
+        }
+        const logoutoverlayStyle = {
+          background: 'rgba(0,0,0,0.5)',
+        }
         const changeDarkMode = () => {
           if (activeMode === 'Dark') {
             changeActiveMode('Light')
@@ -54,7 +66,7 @@ const Header = props => {
         }
 
         const changeActiveRoute = e => {
-          console.log(e)
+          changeCurrentRoute(e.target.id)
         }
 
         return (
@@ -101,6 +113,7 @@ const Header = props => {
                         <HeaderButton
                           type="button"
                           data-testid="hamburgerIconButton"
+                          mode={activeMode}
                         >
                           <GiHamburgerMenu size="25" />
                         </HeaderButton>
@@ -109,58 +122,104 @@ const Header = props => {
                       className="popup-content"
                     >
                       {close => (
-                        <div className="modal-container">
-                          <button
+                        <PopUpMainContainer className="modal-container">
+                          <CloseButton
                             className="close-button"
+                            position="top right"
                             type="button"
                             data-testid="closeButton"
                             onClick={() => close()}
                           >
                             <IoMdClose size="30" color="#616e7c" />
-                          </button>
+                          </CloseButton>
                           <ul className="nav-links-list">
-                            <Link to="/" className="link-item">
-                              <SideBarItem
-                                mode={activeMode}
-                                id="Home"
-                                onClick={changeActiveRoute}
-                              >
-                                <AiFillHome size="22px" />
+                            <Link
+                              to="/"
+                              className="link-item"
+                              activeness={
+                                currentRoute === 'Home' ? 'active' : 'notActive'
+                              }
+                              onClick={changeActiveRoute}
+                            >
+                              <SideBarItem mode={activeMode} id="Home">
+                                <AiFillHome
+                                  size="22px"
+                                  color={
+                                    currentRoute === 'Home' ? '#ff0000' : ''
+                                  }
+                                />
                                 <SideBarItemName>Home</SideBarItemName>
                               </SideBarItem>
                             </Link>
-                            <Link to="/trending" className="link-item">
-                              <SideBarItem
-                                mode={activeMode}
-                                onClick={changeActiveRoute}
-                                id="Trending"
-                              >
-                                <HiFire size="22px" />
+                            <Link
+                              to="/trending"
+                              className="link-item"
+                              activeness={
+                                currentRoute === 'Trending'
+                                  ? 'active'
+                                  : 'notActive'
+                              }
+                              onClick={changeActiveRoute}
+                            >
+                              <SideBarItem mode={activeMode} id="Trending">
+                                <HiFire
+                                  size="22px"
+                                  color={
+                                    currentRoute === 'Trending' ? '#ff0000' : ''
+                                  }
+                                />
                                 <SideBarItemName>Trending</SideBarItemName>
                               </SideBarItem>
                             </Link>
-                            <Link to="/gaming" className="link-item">
-                              <SideBarItem
-                                mode={activeMode}
+                            <>
+                              <Link
+                                to="/gaming"
+                                className="link-item"
+                                activeness={
+                                  currentRoute === 'Gaming'
+                                    ? 'active'
+                                    : 'notActive'
+                                }
                                 onClick={changeActiveRoute}
-                                id="Gaming"
                               >
-                                <SiYoutubegaming size="22px" />
-                                <SideBarItemName>Gaming</SideBarItemName>
-                              </SideBarItem>
-                            </Link>
-                            <Link to="/saved-videos" className="link-item">
-                              <SideBarItem
-                                mode={activeMode}
+                                <SideBarItem mode={activeMode} id="Gaming">
+                                  <SiYoutubegaming
+                                    size="22px"
+                                    color={
+                                      currentRoute === 'Gaming' ? '#ff0000' : ''
+                                    }
+                                  />
+                                  <SideBarItemName>Gaming</SideBarItemName>
+                                </SideBarItem>
+                              </Link>
+                            </>
+
+                            <>
+                              <Link
+                                to="/saved-videos"
+                                className="link-item"
+                                activeness={
+                                  currentRoute === 'Saved'
+                                    ? 'active'
+                                    : 'notActive'
+                                }
                                 onClick={changeActiveRoute}
-                                id="Saved"
                               >
-                                <MdPlaylistAdd size="22px" />
-                                <SideBarItemName>Saved videos</SideBarItemName>
-                              </SideBarItem>
-                            </Link>
+                                <SideBarItem mode={activeMode} id="Saved">
+                                  <MdPlaylistAdd
+                                    size="22px"
+                                    color={
+                                      currentRoute === 'Saved' ? '#ff0000' : ''
+                                    }
+                                  />
+                                  <SideBarItemName>
+                                    Saved videos
+                                  </SideBarItemName>
+                                </SideBarItem>
+                              </Link>
+                            </>
                           </ul>
-                        </div>
+                        </PopUpMainContainer>
                       )}
                     </Popup>
                   </SmallHeaderButton>
@@ -172,12 +231,12 @@ const Header = props => {
                   trigger={
                     <LogoutBtn mode={activeMode} type="button">
                       <LogoutText>Logout</LogoutText>
-                      <SmallLogoutBtn mode={activeMode} type="button">
+                      <SmallLogoutBtn mode={activeMode}>
                         <FiLogOut size="25" />
                       </SmallLogoutBtn>
                     </LogoutBtn>
                   }
-                  overlayStyle={overlayStyle}
+                  overlayStyle={logoutoverlayStyle}
                 >
                   {close => (
                     <>

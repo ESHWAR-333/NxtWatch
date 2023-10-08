@@ -11,6 +11,9 @@ export const MainBodyContainer = styled.div`
 `
 export const SideBarContainer = styled.div`
   flex-grow: 1;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
 export const HomeContainer = styled.div``
 
@@ -59,6 +62,9 @@ export const NoSavedVideosContainer = styled.div`
 `
 export const NoSavedVideoImg = styled.img`
   width: 450px;
+  @media screen and (max-width: 768px) {
+    width: 295px;
+  }
 `
 export const NoSavedVideosTitle = styled.h1`
   font-family: 'Roboto';

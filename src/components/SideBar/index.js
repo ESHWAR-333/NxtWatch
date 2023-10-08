@@ -28,50 +28,78 @@ const SideBar = () => (
       /* console.log(currentRoute) */
 
       const changeActiveRoute = e => {
-        console.log(e)
+        changeCurrentRoute(e.target.id)
       }
       return (
         <SideBarMainContainer mode={activeMode}>
           <SideBarTopContainer>
             <UnorderedList>
-              <Link to="/" className="link-item">
+              <Link to="/" className="link-item" onClick={changeActiveRoute}>
                 <SideBarItem
                   mode={activeMode}
                   id="Home"
-                  onClick={changeActiveRoute}
+                  activeness={currentRoute === 'Home' ? 'active' : 'notActive'}
                 >
-                  <AiFillHome size="22px" />
+                  <AiFillHome
+                    size="22px"
+                    color={currentRoute === 'Home' ? '#ff0000' : ''}
+                  />
                   <SideBarItemName>Home</SideBarItemName>
                 </SideBarItem>
               </Link>
 
-              <Link to="/trending" className="link-item">
+              <Link
+                to="/trending"
+                className="link-item"
+                onClick={changeActiveRoute}
+              >
                 <SideBarItem
                   mode={activeMode}
-                  onClick={changeActiveRoute}
                   id="Trending"
+                  activeness={
+                    currentRoute === 'Trending' ? 'active' : 'notActive'
+                  }
                 >
-                  <HiFire size="22px" />
+                  <HiFire
+                    size="22px"
+                    color={currentRoute === 'Trending' ? '#ff0000' : ''}
+                  />
                   <SideBarItemName>Trending</SideBarItemName>
                 </SideBarItem>
               </Link>
-              <Link to="/gaming" className="link-item">
+              <Link
+                to="/gaming"
+                className="link-item"
+                onClick={changeActiveRoute}
+              >
                 <SideBarItem
                   mode={activeMode}
-                  onClick={changeActiveRoute}
                   id="Gaming"
+                  activeness={
+                    currentRoute === 'Gaming' ? 'active' : 'notActive'
+                  }
                 >
-                  <SiYoutubegaming size="22px" />
+                  <SiYoutubegaming
+                    size="22px"
+                    color={currentRoute === 'Gaming' ? '#ff0000' : ''}
+                  />
                   <SideBarItemName>Gaming</SideBarItemName>
                 </SideBarItem>
               </Link>
-              <Link to="/saved-videos" className="link-item">
+              <Link
+                to="/saved-videos"
+                className="link-item"
+                onClick={changeActiveRoute}
+              >
                 <SideBarItem
                   mode={activeMode}
-                  onClick={changeActiveRoute}
                   id="Saved"
+                  activeness={currentRoute === 'Saved' ? 'active' : 'notActive'}
                 >
-                  <MdPlaylistAdd size="22px" />
+                  <MdPlaylistAdd
+                    size="22px"
+                    color={currentRoute === 'Saved' ? '#ff0000' : ''}
+                  />
                   <SideBarItemName>Saved videos</SideBarItemName>
                 </SideBarItem>
               </Link>

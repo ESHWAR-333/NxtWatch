@@ -2,21 +2,22 @@ import styled from 'styled-components'
 
 export const TrendingVideoCardContainer = styled.div`
   display: flex;
-  padding: 30px;
-  display: block;
+  padding: 20px;
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
     display: none;
+    padding-top: 0px;
   }
 `
 export const TrendingVideoCardImage = styled.img`
-  width: 750px;
+  width: 700px;
   height: 450px;
-  padding: 30px;
+  padding: 20px;
   @media screen and (max-width: 768px) {
     width: 100%;
     padding: 0px;
-    height: 250px;
+    height: 150px;
   }
 `
 export const TrendingVideoCardSubContainer = styled.div`
@@ -29,6 +30,7 @@ export const TrendingVideoCardSubContainer = styled.div`
 export const TrendingVideoCardTitle = styled.p`
   font-size: 22px;
   font-weight: 500;
+  margin-top: 0px;
   color: ${props => (props.mode === 'Dark' ? '#f8fafc' : '#1e293b')};
   @media screen and (max-width: 768px) {
     font-size: 20px;
@@ -49,6 +51,7 @@ export const VideoCardContainer = styled.div`
     margin-top: 10px;
     width: 360px;
     padding-left: 0px;
+    height: 300px;
   }
 `
 export const VideoImage = styled.img`
@@ -57,7 +60,7 @@ export const VideoImage = styled.img`
   margin-right: 10px;
   @media screen and (max-width: 768px) {
     margin-right: 10px;
-    width: 380px;
+    width: 350px;
     margin-left: 10px;
   }
 `

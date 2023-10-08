@@ -18,6 +18,8 @@ export const SideBarItem = styled.div`
   padding-left: 20px;
   margin: 0px;
   color: ${props => (props.mode === 'Dark' ? '#f9f9f9' : '')};
+  background-color: ${props =>
+    props.activeness === 'active' ? '#d7dfe9' : ''};
 `
 export const SideBarItemName = styled.p`
   margin-left: 20px;
@@ -85,12 +87,26 @@ export const HeaderButton = styled.button`
   @media screen and (max-width: 768px) {
     margin-left: 0px;
     margin-right: 0px;
+    color: ${props => (props.mode === 'Dark' ? '#f9f9f9' : '#181818')};
   }
 `
+export const CloseButton = styled.button`
+  position: absolute;
+  top: -150px;
+  right: -60px;
+  background-color: transparent;
+  border: 0px;
+`
+
+export const PopUpMainContainer = styled.div`
+  //   position: relative;
+`
+
 export const SmallHeaderButton = styled.div`
   display: none;
   @media screen and (max-width: 768px) {
     display: flex;
+    color: ${props => (props.mode === 'Dark' ? '#f9f9f9' : '#181818')};
   }
 `
 export const UserHeader = styled.ul`
